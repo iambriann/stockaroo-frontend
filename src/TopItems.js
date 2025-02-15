@@ -33,6 +33,12 @@ const TopItems = () => {
     <div className="p-4 bg-bloombergBg min-h-screen text-bloombergText">
       <h1 className="text-2xl font-bold mb-4 text-bloombergAccent">Stockaroo</h1>
       <table className="w-full border-collapse">
+        <colgroup>
+          <col style={{ width: '12%' }} />
+          <col style={{ width: '8%' }} />
+          <col style={{ width: '30%' }} />
+          <col style={{ width: '50%' }} />
+        </colgroup>        
         <thead>
           <tr className="bg-bloombergTable text-bloombergAccent">
             <th className="border border-gray-300 px-4 py-2 text-left">Time</th>
@@ -44,7 +50,7 @@ const TopItems = () => {
         <tbody>
           {items.map((item) => (
             <tr key={item.id} className="hover:bg-gray-800">
-              <td className="border border-gray-300 px-4 py-2 text-left">{item.detectedTimestamp}</td>
+              <td className="border border-gray-300 px-4 py-2 text-left">{formatDateToSydney(item.detectedTimestamp)}</td>
               <td className="border border-gray-300 px-4 py-2 text-left">{item.source}</td>
               <td className="border border-gray-300 px-4 py-2 text-left">{item.title}</td>
               <td className="border border-gray-300 px-4 py-2 text-left">{item.desc}</td>
