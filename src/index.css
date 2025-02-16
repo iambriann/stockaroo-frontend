@@ -18,6 +18,7 @@ table {
 }
 
 td {
+  padding: 0;
   overflow: hidden;     /* Hide any overflowing text */
   text-overflow: ellipsis;  /* Show ellipsis (...) if the text is too long */
   white-space: nowrap;  /* Prevent text from wrapping to a new line */

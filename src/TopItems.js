@@ -5,24 +5,31 @@ const TopItems = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/latest');
-        console.log(response);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false);
+  // Fetch items from the API
+  const fetchItems = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/latest');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    };
+      const data = await response.json();
+      setItems(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchItems();
+  useEffect(() => {
+    fetchItems(); // Initial fetch
+
+    // Set interval to refresh data every 60 seconds
+    const interval = setInterval(() => {
+      fetchItems();
+    }, 20000); // 20 second refresh
+
+    return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   if (loading) {
