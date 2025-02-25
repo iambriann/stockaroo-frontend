@@ -8,24 +8,12 @@ const TopItems = () => {
   // Fetch items from the API
   const fetchItems = async () => {
     try {
-      // Get the current time in Sydney
-      const sydneyTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" });
-      const currentTime = new Date(sydneyTime);
-      // Get the hour and minute
-      const hour = currentTime.getHours();
-      const minute = currentTime.getMinutes();      
-      
-      // Check if current time is between 6:30 AM and 7:00 PM
-      if ((hour > 6 || (hour === 6 && minute >= 30)) && (hour < 19 || (hour === 19 && minute === 0))) {
-        const response = await fetch('http://localhost:8080/latest');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setItems(data);
-      } else {
-        console.log("Fetch request is outside of the allowed time range.");
+      const response = await fetch('http://localhost:8080/latest');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      const data = await response.json();
+      setItems(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -38,7 +26,18 @@ const TopItems = () => {
 
     // Set interval to refresh data every 60 seconds
     const interval = setInterval(() => {
-      fetchItems();
+      // Get the current time in Sydney
+      const sydneyTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" });
+      const currentTime = new Date(sydneyTime);
+      // Get the hour and minute
+      const hour = currentTime.getHours();
+      const minute = currentTime.getMinutes();      
+      // Check if current time is between 6:30 AM and 7:00 PM
+      if ((hour > 6 || (hour === 6 && minute >= 30)) && (hour < 19 || (hour === 19 && minute === 0))) {
+        fetchItems();
+      } else {
+        console.log("Fetch request is outside of the allowed time range.");
+      }
     }, 20000); // 20 second refresh
 
     return () => clearInterval(interval); // Cleanup on component unmount
