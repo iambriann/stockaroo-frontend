@@ -32,8 +32,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ${{ secrets.DOCKER_USER }}/stockaroo:frontend .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/stockaroo:frontend .
     
     - name: Push Docker image
       run: |
-        docker push ${{ secrets.DOCKER_USER }}/stockaroo:frontend
+        docker push ${{ secrets.DOCKER_USERNAME }}/stockaroo:frontend
