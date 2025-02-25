@@ -32,8 +32,8 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t asx-app-frontend .
+        docker build -t asx-app-frontend/stockaroo:frontend .
     
     - name: Push Docker image
       run: |
-        docker push asx-app-frontend
+        docker push asx-app-frontend/stockaroo:frontend
