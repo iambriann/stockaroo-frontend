@@ -8,7 +8,8 @@ const TopItems = () => {
   // Fetch items from the API
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:8080/latest');
+      const API_URL = process.env.REACT_APP_VARIABLE_NAME;
+      const response = await fetch('${API_URL}');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -49,7 +50,7 @@ const TopItems = () => {
 
   return (
     <div className="p-4 bg-bloombergBg min-h-screen text-bloombergText">
-      <h1 className="text-2xl font-bold mb-4 text-bloombergAccent">Stockaroo</h1>
+      <h1 className="text-2xl font-bold mb-4 text-bloombergAccent">ASXPulse - Rapid access to fresh news</h1>
       <table className="w-full border-collapse">
         <colgroup>
           <col style={{ width: '12%' }} />
