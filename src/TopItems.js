@@ -10,7 +10,7 @@ const TopItems = () => {
     try {
       const API_URL = process.env.REACT_APP_API_URL;
       console.error(API_URL);
-      const response = await fetch(API_URL);
+      const response = await fetch("http://43.229.62.179:8080/latest");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
