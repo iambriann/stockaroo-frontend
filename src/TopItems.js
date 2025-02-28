@@ -8,7 +8,8 @@ const TopItems = () => {
   // Fetch items from the API
   const fetchItems = async () => {
     try {
-      const API_URL = process.env.REACT_APP_VARIABLE_NAME;
+      const API_URL = "process.env.REACT_APP_VARIABLE_NAME";
+      console.error('${API_URL}');
       const response = await fetch('${API_URL}');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
