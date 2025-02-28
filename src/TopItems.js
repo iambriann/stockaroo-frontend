@@ -9,8 +9,12 @@ const TopItems = () => {
   const fetchItems = async () => {
     try {
       const API_URL = process.env.REACT_APP_API_URL;
-      console.error(API_URL);
-      const response = await fetch(API_URL);
+      console.log(API_URL);
+      const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+      };      
+      const response = await fetch(API_URL, requestOptions);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
