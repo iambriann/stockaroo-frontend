@@ -9,7 +9,7 @@ const TopItems = () => {
   const fetchItems = async () => {
     try {
       const API_URL = process.env.REACT_APP_API_URL;
-      console.log(API_URL);
+      console.log("hello" + API_URL + "hello");
       const requestOptions = {
         method: "GET",
         redirect: "follow"
