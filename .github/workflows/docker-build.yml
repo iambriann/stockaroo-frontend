@@ -15,7 +15,7 @@ jobs:
 
     - name: Set CORS origin in the application
       run: |
-        sed -i 's|<GET_HEADLINES_URL>|${{ secrets.REACT_APP_API_URL }}' .env        
+        sed -i 's|<GET_HEADLINES_URL>|${{ secrets.REACT_APP_API_URL }}|' .env        
 
     - name: Log into Docker Hub
       uses: docker/login-action@v2
