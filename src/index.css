@@ -12,6 +12,7 @@ body {
 }
 
 table {
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%; 
   table-layout: fixed;
