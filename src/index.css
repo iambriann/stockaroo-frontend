@@ -1,31 +1,172 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-body {
+/* General Body Styling */
+html, body {
+  background-color: #1e1e1e; /* Light black background */
+  color: #ff7f00; /* Bright orange text color */
+  font-family: 'Arial', sans-serif; /* Choose a clean font */
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-table {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 100%; 
-  table-layout: fixed;
-}
-
-td {
   padding: 0;
-  overflow: hidden;     /* Hide any overflowing text */
-  text-overflow: ellipsis;  /* Show ellipsis (...) if the text is too long */
-  white-space: nowrap;  /* Prevent text from wrapping to a new line */
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Container Styling */
+.container {
+  padding: 2em;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%; /* Full width to allow responsiveness */
+}
+
+/* Header Title */
+.header-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 0;
+  color: #ff7f00; /* Bright orange for header */
+}
+
+
+/* Styling for Last Updated timestamp */
+.last-updated {
+  color: #d1cfcd; /* Orange color */
+  font-size: 1rem;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+
+/* Button Styling */
+.sound-button {
+  background-color: #333; /* Dark gray background for button */
+  color: #ff7f00; /* Orange text on the button */
+  border: 1px solid #ff7f00; /* Orange border */
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+  margin: 10px 0;
+}
+
+.sound-button:hover {
+  background-color: #ff7f00; /* Orange background when hovered */
+  color: #1e1e1e; /* Dark text color when hovered */
+}
+
+/* Row Styling */
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #333; /* Dark gray border between rows */
+  flex-wrap: wrap; /* Allow for wrapping in smaller screens */
+}
+
+/* Header Row Styling */
+.header-row {
+  background-color: #333; /* Dark gray background for header */
+  font-weight: bold; /* Bold text for header */
+  color: #ff7f00; /* Bright orange text */
+  border-top: 2px solid #ff7f00; /* Orange border at the top of the header */
+  text-transform: uppercase; /* Makes the header text uppercase */
+  padding: 15px 0; /* Add padding to the header for better spacing */
+}
+
+/* Column Styling */
+.column {
+  flex: 1;
+  margin: 0 10px;
+  color: #ff7f00; /* Orange text color for the columns */
+  padding: 5px 0;
+}
+
+/* Time Column */
+.column.time {
+  font-weight: bold;
+  flex: 0.5;
+}
+
+/* Title Column */
+.column.title {
+  font-size: 1.1rem;
+  flex: 2;
+}
+
+/* Description Column */
+.column.description {
+  font-size: 0.9rem;
+  flex: 3;
+}
+
+/* Responsive Design for Smaller Screens */
+
+/* Medium Devices (tablets) */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 2rem; /* Smaller header */
+  }
+
+  .sound-button {
+    font-size: 0.9rem;
+    padding: 8px 16px; /* Adjust button padding */
+  }
+
+  .row {
+    flex-direction: column; /* Stack rows vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .column {
+    flex: 1 1 100%; /* Make columns take full width on smaller screens */
+    text-align: center; /* Center text in columns */
+    margin-bottom: 10px; /* Add spacing between columns */
+  }
+
+  .column.time {
+    font-size: 0.9rem;
+  }
+
+  .column.title {
+    font-size: 1rem;
+  }
+
+  .column.description {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Devices (phones) */
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 1.5rem; /* Smaller header on phones */
+  }
+
+  .sound-button {
+    font-size: 0.8rem;
+    padding: 6px 12px; /* Smaller padding for the button */
+  }
+
+  .row {
+    flex-direction: column; /* Stack rows vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .column {
+    flex: 1 1 100%; /* Make columns take full width on mobile */
+    text-align: center; /* Center text in columns */
+    margin-bottom: 15px; /* Add spacing between columns */
+  }
+
+  .column.time {
+    font-size: 0.8rem;
+  }
+
+  .column.title {
+    font-size: 0.9rem;
+  }
+
+  .column.description {
+    font-size: 0.75rem;
+  }
 }
