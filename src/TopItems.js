@@ -80,7 +80,7 @@ const TopItems = () => {
     }, 20000); // 20 second refresh
 
     return () => clearInterval(interval); // Cleanup on component unmount
-  });
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
