@@ -122,6 +122,11 @@ html, body {
     flex-direction: column;
     align-items: stretch; /* Stretch items to full width */
     padding: 15px 0; /* Add more padding for spacing */
+    margin-bottom: 15px; /* Space between rows */
+    background-color: #2a2a2a; /* Slightly lighter background for distinction */
+    border: 1px solid #444; /* Subtle border around each row */
+    border-radius: 5px; /* Rounded corners for a card-like look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */    
   }
 
   /* Style columns for stacking */
@@ -130,7 +135,7 @@ html, body {
     text-align: left; /* Align text to the left */
     margin: 0; /* Remove horizontal margins */
     padding: 8px 10px; /* Consistent padding */
-    border-bottom: 1px solid #333; /* Separator between items */
+    border-bottom: none;
   }
 
   /* Add data labels */
@@ -142,11 +147,6 @@ html, body {
     margin-bottom: 5px;
     text-transform: uppercase;
   }
-
-  /* Remove border from the last column in each row */
-  .column:last-child {
-    border-bottom: none;
-  }  
 
   .column.time {
     font-size: 0.9rem;
@@ -182,6 +182,11 @@ html, body {
     flex-direction: column;
     align-items: stretch; /* Stretch items to full width */
     padding: 15px 0; /* Add more padding for spacing */
+    margin-bottom: 15px; /* Space between rows */
+    background-color: #2a2a2a; /* Slightly lighter background for distinction */
+    border: 1px solid #444; /* Subtle border around each row */
+    border-radius: 5px; /* Rounded corners for a card-like look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   }
 
   /* Style columns for stacking */
@@ -190,7 +195,7 @@ html, body {
     text-align: left; /* Align text to the left */
     margin: 0; /* Remove horizontal margins */
     padding: 8px 10px; /* Consistent padding */
-    border-bottom: 1px solid #333; /* Separator between items */
+    border-bottom: none;
   }
 
   /* Add data labels */
