@@ -1,8 +1,8 @@
 /* General Body Styling */
 html, body {
-  background-color: #1e1e1e; /* Light black background */
-  color: #ff7f00; /* Bright orange text color */
-  font-family: 'Arial', sans-serif; /* Choose a clean font */
+  background-color: #1e1e1e; 
+  color: #ff7f00;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,7 +13,7 @@ html, body {
   padding: 2em;
   margin: 0 auto;
   box-sizing: border-box;
-  width: 100%; /* Full width to allow responsiveness */
+  width: 100%; 
 }
 
 /* Header Title */
@@ -22,13 +22,13 @@ html, body {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 0;
-  color: #ff7f00; /* Bright orange for header */
+  color: #ff7f00;
 }
 
 
 /* Styling for Last Updated timestamp */
 .last-updated {
-  color: #d1cfcd; /* Orange color */
+  color: #d1cfcd;
   font-size: 1rem;
   margin-top: 10px;
   text-align: center;
@@ -38,9 +38,9 @@ html, body {
 
 /* Button Styling */
 .sound-button {
-  background-color: #333; /* Dark gray background for button */
-  color: #ff7f00; /* Orange text on the button */
-  border: 1px solid #ff7f00; /* Orange border */
+  background-color: #333; 
+  color: #ff7f00;
+  border: 1px solid #ff7f00;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
@@ -50,8 +50,8 @@ html, body {
 }
 
 .sound-button:hover {
-  background-color: #ff7f00; /* Orange background when hovered */
-  color: #1e1e1e; /* Dark text color when hovered */
+  background-color: #ff7f00; 
+  color: #1e1e1e; 
 }
 
 /* Row Styling */
@@ -59,25 +59,25 @@ html, body {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid #333; /* Dark gray border between rows */
-  flex-wrap: wrap; /* Allow for wrapping in smaller screens */
+  border-bottom: 1px solid #333;
+  flex-wrap: wrap; 
 }
 
 /* Header Row Styling */
 .header-row {
-  background-color: #333; /* Dark gray background for header */
-  font-weight: bold; /* Bold text for header */
-  color: #ff7f00; /* Bright orange text */
-  border-top: 2px solid #ff7f00; /* Orange border at the top of the header */
-  text-transform: uppercase; /* Makes the header text uppercase */
-  padding: 15px 0; /* Add padding to the header for better spacing */
+  background-color: #333; 
+  font-weight: bold;
+  color: #ff7f00; 
+  border-top: 2px solid #ff7f00; 
+  text-transform: uppercase; 
+  padding: 15px 0;
 }
 
 /* Column Styling */
 .column {
   flex: 1;
   margin: 0 10px;
-  color: #ff7f00; /* Orange text color for the columns */
+  color: #ff7f00;
   padding: 5px 0;
 }
 
@@ -112,16 +112,41 @@ html, body {
     padding: 8px 16px; /* Adjust button padding */
   }
 
-  .row {
-    flex-direction: column; /* Stack rows vertically */
-    align-items: center; /* Center items horizontally */
+  /* Hide the header row */
+  .header-row {
+    display: none;
   }
 
-  .column {
-    flex: 1 1 100%; /* Make columns take full width on smaller screens */
-    text-align: center; /* Center text in columns */
-    margin-bottom: 10px; /* Add spacing between columns */
+  /* Stack rows vertically */
+  .row {
+    flex-direction: column;
+    align-items: stretch; /* Stretch items to full width */
+    padding: 15px 0; /* Add more padding for spacing */
   }
+
+  /* Style columns for stacking */
+  .column {
+    flex: 1 1 100%; /* Full width */
+    text-align: left; /* Align text to the left */
+    margin: 0; /* Remove horizontal margins */
+    padding: 8px 10px; /* Consistent padding */
+    border-bottom: 1px solid #333; /* Separator between items */
+  }
+
+  /* Add data labels */
+  .column::before {
+    content: attr(data-label); /* Use data-label attribute for text */
+    font-weight: bold;
+    display: block;
+    color: #ff7f00;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  /* Remove border from the last column in each row */
+  .column:last-child {
+    border-bottom: none;
+  }  
 
   .column.time {
     font-size: 0.9rem;
@@ -147,16 +172,41 @@ html, body {
     padding: 6px 12px; /* Smaller padding for the button */
   }
 
-  .row {
-    flex-direction: column; /* Stack rows vertically */
-    align-items: center; /* Center items horizontally */
+  /* Hide the header row */
+  .header-row {
+    display: none;
   }
 
-  .column {
-    flex: 1 1 100%; /* Make columns take full width on mobile */
-    text-align: center; /* Center text in columns */
-    margin-bottom: 15px; /* Add spacing between columns */
+  /* Stack rows vertically */
+  .row {
+    flex-direction: column;
+    align-items: stretch; /* Stretch items to full width */
+    padding: 15px 0; /* Add more padding for spacing */
   }
+
+  /* Style columns for stacking */
+  .column {
+    flex: 1 1 100%; /* Full width */
+    text-align: left; /* Align text to the left */
+    margin: 0; /* Remove horizontal margins */
+    padding: 8px 10px; /* Consistent padding */
+    border-bottom: 1px solid #333; /* Separator between items */
+  }
+
+  /* Add data labels */
+  .column::before {
+    content: attr(data-label); /* Use data-label attribute for text */
+    font-weight: bold;
+    display: block;
+    color: #ff7f00;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  /* Remove border from the last column in each row */
+  .column:last-child {
+    border-bottom: none;
+  }  
 
   .column.time {
     font-size: 0.8rem;

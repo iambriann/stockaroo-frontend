@@ -4,7 +4,7 @@ import { formatDateToSydney } from "./utils/dateUtils"; // Import the function
 const TopItems = () => {
   const [items, setItems] = useState([]);
   const [soundEnabled, setSoundEnabled] = useState(true); // Track sound state
-  const prevLastItemRef = useRef(null);
+  const prevItemsRef = useRef([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState("");
 
@@ -29,7 +29,7 @@ const TopItems = () => {
 
 
   // Fetch items from the API
-  const fetchItems = async () => {
+  const fetchItems = async (isScheduled = false) => {
     try {
       const API_URL = process.env.REACT_APP_API_URL;
       const requestOptions = {
@@ -42,11 +42,21 @@ const TopItems = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+
+      if(isScheduled && soundEnabled) {
+        const prevItems = prevItemsRef.current;
+        const itemsChanged = JSON.stringify(prevItems) !== JSON.stringify(data);
+        if(itemsChanged) {
+          playSound();
+        }
+      }
+
       setItems(data);
+      setLastUpdated(getSydneyTime());
+      prevItemsRef.current = data;
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
-      setLastUpdated(getSydneyTime());
       setLoading(false);
     }
   };
@@ -63,7 +73,7 @@ const TopItems = () => {
       const minute = currentTime.getMinutes();      
       // Check if current time is between 6:30 AM and 7:00 PM
       if ((hour > 6 || (hour === 6 && minute >= 30)) && (hour < 19 || (hour === 19 && minute === 0))) {
-        fetchItems();
+        fetchItems(true);
       } else {
         console.log("Fetch request is outside of the allowed time range.");
       }
@@ -72,18 +82,9 @@ const TopItems = () => {
     return () => clearInterval(interval); // Cleanup on component unmount
   });
 
-  useEffect(() => {
-    const lastItem = items[items.length - 1];
-    if (lastItem && lastItem !== prevLastItemRef.current && soundEnabled) {
-      playSound();
-    }
-    prevLastItemRef.current = lastItem;
-  }, [items, soundEnabled]);
-
   if (loading) {
     return <p>Loading...</p>;
   }
-
 
   const handleClick = () => {
     // Toggle the soundEnabled state
@@ -101,7 +102,7 @@ const TopItems = () => {
 
   return (
     <div className="container">
-      <h1 className="header-title">ASXPulse - Rapid access to fresh news</h1>
+      <h1 className="header-title">ASXPulse - Your Live Beat on the ASX</h1>
       <div className="last-updated">
         Last Updated: {lastUpdated}
       </div>
@@ -116,10 +117,10 @@ const TopItems = () => {
       </div>
       {items.map((item) => (
         <div className="row">
-          <div className="column time">{formatDateToSydney(item.detectedTimestamp)}</div>
-          <div className="column source">{item.source}</div>
-          <div className="column title">{item.title}</div>
-          <div className="column description">{item.desc}</div>
+          <div className="column time" data-label="Time">{formatDateToSydney(item.detectedTimestamp)}</div>
+          <div className="column source" data-label="Source">{item.source}</div>
+          <div className="column title" data-label="Title">{item.title}</div>
+          <div className="column description" data-label="Description">{item.desc}</div>
         </div>
       ))}
     </div>
